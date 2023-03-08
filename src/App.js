@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import {damage} from "./formAtack";
+import {useState} from "react";
+import ButtonComp from "./ButtonComp";
+import InputAtk from "./InputAtk";
 
 function App() {
+    const [atkType,changType] = useState('');
+    const [dfsType,bType] = useState('');
+    const [atkstat,fatjstat] = useState(0);
+    const [defstat,fdef] = useState(0);
+    const [res,funkRez] = useState(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div >
+
+       <ButtonComp type={atkType} changeType={changType}></ButtonComp>
+          <InputAtk changeValue={fatjstat}></InputAtk>
+          <ButtonComp type={dfsType} changeType={bType}></ButtonComp>
+          <InputAtk changeValue={fdef}></InputAtk>
+
+          <button onClick={()=>funkRez(damage(atkType, dfsType, atkstat, defstat))}>result</button>
+          {res}
+      </div>
   );
 }
-
 export default App;
